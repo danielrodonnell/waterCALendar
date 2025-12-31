@@ -1,19 +1,17 @@
-#' Run function \code{update_wyt} whenever \code{library(waterCALendar)} is
-#' called. Not exported to namespace:waterCALendar.
 
-#' Create package environment to hold updated data
+# Create package environment to hold updated data
 pkg_env <- new.env(parent = emptyenv())
 
-#' Run \code{update_wyt()}
+# Internal function - runs when package is loaded
+# Updates wy_indices data if in interactive session
 .onAttach <- function(libname, pkgname) {
-
-  data("wy_indices", envir = environment())
-
-  if (interactive()){
+  utils::data("wy_indices", envir = environment())
+  if (interactive()) {
     update_wyt()
   }
 }
 
+# Internal function to retrieve wy_indices
 get_wy_indices <- function() {
   if (exists("wy_indices", envir = pkg_env)) {
     return(get("wy_indices", envir = pkg_env))

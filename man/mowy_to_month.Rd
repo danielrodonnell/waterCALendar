@@ -22,9 +22,9 @@ California water years begin on October 1. \code{mowy_to_month()} returns the
 month of the year if you enter a month of water year (MOWY).
 }
 \examples{
-mowy_to_month(5,"1999")
-mowy_to_month("5",1999)
-mowy_to_month("5","1999")
+mowy_to_month(5,form="Mmm")
+mowy_to_month("5",form="long")
+mowy_to_month("5")
 
 }
 \seealso{

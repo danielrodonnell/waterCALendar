@@ -1,4 +1,3 @@
-
 #' Convert Date to Water Year Type
 #'
 #' California water years (beginning October 1) in the Sacramento and San
@@ -9,23 +8,21 @@
 #' region (Sacramento or San Joaquin).
 #'
 #' @examples
-#' date_to_wyt("2024-11-01", "Sac", abbreviate=TRUE)
-#' date_to_wyt(as.Date("2024-11-01"), "SJ")
-#' date_to_wyt("1/1/2024","San Joaquin")
+#' wy_to_wyt("2024", "Sac", abbreviate=TRUE)
+#' wy_to_wyt(2024, "sj")
 #'
 #' @importFrom dplyr tibble mutate left_join filter
 #' @importFrom magrittr %>%
 #' @importFrom stringr str_extract_all
 #' @importFrom purrr map_chr
-#' @param date A date or datetime of any format EXCEPT those containing words
-#' like "January" or abbreviations like "Jan". Accepted classes are
-#' \code{character}, \code{Date}, \code{POSIXct} and \code{POSIXlt}.
+#' @param wy A water year of the format yyyy. Accepted classes are
+#' \code{character} and \code{numeric}.
 #' @param region Sacramento or San Joaquin Valley? Region may be abbreviated
 #' (or not) in any of several ways, e.g., "San", "sj", "San Joaquin", "sac",
 #' "Sacramento", etc. Only \code{character} is accepted.
 #' @param abbreviate Abbreviate the water year type (e.g., show "Dry" as "D")?
 #' @order 0
-#' @return Returns \code{character} water year type of the date and region
+#' @return Returns \code{character} water year type of the water year and region
 #' entered.
 #' @seealso [date_to_mowy()],
 #' [mowy_to_month()],
@@ -35,13 +32,28 @@
 #' [doy_to_dowy()],
 #' [dowy_to_doy()],
 #' [doy_to_date()],
-#' [date_to_doy()]
+#' [date_to_doy()],
+#' [date_to_wyt()],
+#' [date_to_wy()],
 #' [date_to_Date()]
 #' @export
-date_to_wyt <- function(date,region,abbreviate=F){
+wy_to_wyt <- function(wy,region,abbreviate=F){
+
+  if(is.null(wy)){
+    stop(paste0('argument "wy" is missing from wy_to_wyt(wy,region), with no ',
+                'default'))
+  }
+  if(!is.character(wy) & !is.numeric(wy)){
+    stop(paste0('argument "wy" must be of class character or numeric and be ',
+                'of the format yyyy, e.g., "2023"'))
+  }
+  if(nchar(wy)!=4 | any(!grepl("^[0-9]+$",wy))){
+    stop(paste0('argument "wy" must be a water year of the format yyyy, ',
+                'e.g., "2023"'))
+  }
 
   if(is.null(region)){
-    stop(paste0('argument "region" is missing from date_to_wyt(date,region), ',
+    stop(paste0('argument "region" is missing from date_to_wyt(wy,region), ',
                 'with no default'))
   }
   if(grepl("san",region,ignore.case=T)|grepl("sj",region,ignore.case=T)){
@@ -49,14 +61,12 @@ date_to_wyt <- function(date,region,abbreviate=F){
   }else if(grepl("sac",region,ignore.case=T)){
     region <- "Sacramento Valley"
   }else{
-    stop(paste0('date_to wyt() could not recognize region as entered. Please ',
+    stop(paste0('wy_to wyt() could not recognize region as entered. Please ',
                 'enter a region containing\nany of "sac", "Sac","san","San",',
                 'or similar to indicate Sacramento or San Joaquin Valley.'))
   }
 
-  date <- date_to_Date(date)
-
-  wy <- date_to_wy(date)
+  wy <- as.numeric(wy)
 
   if(any(!wy %in% wy_indices$Water_year)){
 
@@ -72,8 +82,7 @@ date_to_wyt <- function(date,region,abbreviate=F){
     }
   }
 
-  wyt_table <- tibble(Date=date,
-                      Water_year = date_to_wy(date))
+  wyt_table <- tibble(Water_year = wy)
 
   wyt_table <- wyt_table %>%
     left_join(wy_indices %>%
@@ -84,11 +93,11 @@ date_to_wyt <- function(date,region,abbreviate=F){
   if(abbreviate){
     wyt_table <- wyt_table %>%
       mutate(WYT = str_extract_all(WYT, "[A-Z]") %>%
-             map_chr(~paste(.x, collapse = "")))
-    }else{
-      wyt_table <- wyt_table %>%
-        uniform_wyi(.)
-    }
+               map_chr(~paste(.x, collapse = "")))
+  }else{
+    wyt_table <- wyt_table %>%
+      uniform_wyi(.)
+  }
 
   if(all(!wy %in% wy_indices$Water_year)){
     cat("")

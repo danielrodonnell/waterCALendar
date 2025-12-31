@@ -29,11 +29,11 @@ If \code{verbose=TRUE}, a
 reminder message to this effect will be displayed.
 }
 \examples{
-date_to_dowy("2024-01-01",verbose=T)
+date_to_dowy("2024-01-01",verbose=TRUE)
 date_to_dowy(as.Date("2024-01-01"))
 date_to_dowy(as.POSIXct("2024-01-01"))
 date_to_dowy("1/1/2024 12:00")
-date_to_dowy(as.POSIXlt("2024-01-01"),verbose=T)
+date_to_dowy(as.POSIXlt("2024-01-01"),verbose=TRUE)
 
 }
 \seealso{

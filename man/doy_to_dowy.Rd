@@ -27,7 +27,7 @@ whereas \code{as.POSIXlt("yyyy-mm-dd")$yday} begins as 0 on January 1.
 }
 \examples{
 doy_to_dowy(150,"2024")
-doy_to_dowy("150",2024,verbose=T)
+doy_to_dowy("150",2024,verbose=TRUE)
 doy_to_dowy("150","2024")
 
 }

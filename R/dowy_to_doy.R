@@ -4,9 +4,9 @@
 #' DOY if you enter a DOWY and a year.
 #'
 #' @examples
-#' dowy(1,"1999")
-#' dowy("365",1999)
-#' dowy("150","1999",verbose=T)
+#' dowy_to_doy(1,"1999")
+#' dowy_to_doy("365",1999)
+#' dowy_to_doy("150","1999",verbose=TRUE)
 #'
 #' @importFrom lubridate leap_year
 #' @importFrom dplyr tibble mutate

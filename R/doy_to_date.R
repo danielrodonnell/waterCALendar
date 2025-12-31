@@ -4,9 +4,9 @@
 #' to account for leap years.
 #'
 #' @examples
-#' date_to_doy("10",2022)
-#' date_to_doy(10,"2022")
-#' date_to_doy("10","2022", verbose=T)
+#' doy_to_date("10",2022)
+#' doy_to_date(10,"2022")
+#' doy_to_date("10","2022")
 #'
 #' @importFrom lubridate leap_year
 #' @importFrom dplyr tibble mutate

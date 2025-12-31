@@ -28,9 +28,9 @@ the water year (\code{wyear}) entered. If \code{verbose=TRUE}, a reminder messag
 to this effect will be displayed.
 }
 \examples{
-dowy(1,"1999")
-dowy("365",1999)
-dowy("150","1999",verbose=T)
+dowy_to_doy(1,"1999")
+dowy_to_doy("365",1999)
+dowy_to_doy("150","1999",verbose=TRUE)
 
 }
 \seealso{

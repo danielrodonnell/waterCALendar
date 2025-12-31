@@ -24,9 +24,9 @@ Note that the \code{doy} argument assumes that \code{doy} 1 is January 1,
 whereas \code{as.POSIXlt("yyyy-mm-dd")$yday} begins as 0 on January 1.
 }
 \examples{
-date_to_doy("10",2022)
-date_to_doy(10,"2022")
-date_to_doy("10","2022", verbose=T)
+doy_to_date("10",2022)
+doy_to_date(10,"2022")
+doy_to_date("10","2022")
 
 }
 \seealso{

@@ -4,9 +4,9 @@
 #'
 #' @examples
 #' date_to_doy("2024-01-01")
-#' date_to_doy(as.Date("2024-01-01"), verbose=T)
+#' date_to_doy(as.Date("2024-01-01"), verbose=TRUE)
 #' date_to_doy("1/1/2024")
-#' date_to_doy(as.POSIXct("2024-01-01 12:45:30"), verbose=T)
+#' date_to_doy(as.POSIXct("2024-01-01 12:45:30"), verbose=TRUE)
 #' date_to_doy(as.POSIXlt("2024-01-01 12:45:30"))
 #'
 #' @importFrom dplyr mutate tibble

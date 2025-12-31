@@ -20,11 +20,11 @@ California water years begin on October 1. \code{\link[=date_to_mowy]{date_to_mo
 of water year (MOWY). For example, if the date is in December, the MOWY is 3.
 }
 \examples{
-date_to_mowy("2024-01-01",verbose=T)
+date_to_mowy("2024-01-01")
 date_to_mowy(as.Date("2024-01-01"))
 date_to_mowy("1/1/2024")
-date_to_mowy(as.POSIXct("2024-01-01))
-date_to_mowy(as.POSIXlt("2024-01-01))
+date_to_mowy(as.POSIXct("2024-01-01"))
+date_to_mowy(as.POSIXlt("2024-01-01"))
 
 }
 \seealso{

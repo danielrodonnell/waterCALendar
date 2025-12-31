@@ -4,9 +4,9 @@
 #' month of water year (MOWY) if you enter a month.
 #'
 #' @examples
-#' month_to_mowy(5,"1999")
-#' month_to_mowy("Mar",1999)
-#' month_to_mowy("December","1999")
+#' month_to_mowy(5)
+#' month_to_mowy("Mar")
+#' month_to_mowy("December")
 #'
 #' @importFrom lubridate leap_year month
 #' @importFrom readr parse_number

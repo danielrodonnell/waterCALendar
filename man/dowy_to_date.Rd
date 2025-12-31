@@ -23,7 +23,7 @@ account for leap years.
 \examples{
 dowy_to_date(45,"1999")
 dowy_to_date("45",1999)
-dowy_to_date("45","1999",verbose=F)
+dowy_to_date("45","1999")
 
 }
 \seealso{
