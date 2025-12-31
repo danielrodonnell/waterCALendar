@@ -29,3 +29,5 @@ Suggests:
     testthat (>= 3.0.0)
 Config/testthat/edition: 3
 LazyData: true
+URL: https://github.com/danielrodonnell/waterCALendar
+BugReports: https://github.com/danielrodonnell/waterCALendar/issues
