@@ -25,8 +25,8 @@ California water years (beginning October 1) in the Sacramento and San
 Joaquin Valleys are separately assigned one of five hydrologic
 classifications (water year types, WYT), based on measured unimpaired runoff:
 Wet (W); Above Normal (AN); Below Normal (BN); Dry (D); or Critical (C).
-\code{date_to_wyt()} returns the water year type when you enter a date and a
-region (Sacramento or San Joaquin).
+\code{wy_to_wyt()} returns the water year type when you enter a water year
+and a region (Sacramento or San Joaquin).
 }
 \examples{
 wy_to_wyt("2024", "Sac", abbreviate=TRUE)
